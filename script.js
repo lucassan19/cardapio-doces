@@ -2,7 +2,7 @@
 const menuData = [
     {
         id: 'doce1',
-        name: 'Cone da Gi',
+        name: 'Cone Trufado',
         description: 'Nosso campeão de vendas, feito com receita secreta.',
         image: 'img/conex.jpg',
         flavors: [
