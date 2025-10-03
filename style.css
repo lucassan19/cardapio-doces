@@ -1,0 +1,401 @@
+/*
+ * ------------------------------------------------
+ * Estilos Globais e Reset Básico
+ * ------------------------------------------------
+ */
+:root {
+    --primary-color: #f7b2b2; /* Rosa claro - fundo e destaques */
+    --secondary-color: #d85c88; /* Rosa médio - botões e títulos */
+    --text-color: #333; /* Texto principal */
+    --light-text: #fff; /* Texto em fundos escuros */
+    --font-heading: 'Dancing Script', cursive; /* Fonte elegante para títulos */
+    --font-body: 'Poppins', sans-serif; /* Fonte moderna para corpo */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-color);
+    background-color: #fcebeb; /* Fundo bem clarinho */
+    line-height: 1.6;
+    padding-top: 80px; /* Espaço para cabeçalho fixo */
+}
+
+/*
+ * ------------------------------------------------
+ * Cabeçalho e Rodapé
+ * ------------------------------------------------
+ */
+.header {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    padding: 20px 15px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-family: var(--font-heading);
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+.header p {
+    font-size: 0.9em;
+}
+
+.footer {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+    font-size: 0.85em;
+}
+
+/*
+ * ------------------------------------------------
+ * Layout Principal
+ * ------------------------------------------------
+ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    font-family: var(--font-heading);
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2em;
+    padding-top: 15px;
+}
+
+/*
+ * ------------------------------------------------
+ * Seção de Cardápio (Menu)
+ * ------------------------------------------------
+ */
+.menu-section {
+    padding: 20px 0;
+}
+
+.menu-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.menu-card {
+    background-color: var(--light-text);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.menu-card img {
+    width: 100%;
+    height: 200px; /* Altura fixa para uniformidade */
+    object-fit: cover;
+    display: block;
+}
+
+.card-info {
+    padding: 15px;
+}
+
+.card-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8em;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.card-info p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.select-button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+.select-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+}
+
+/*
+ * ------------------------------------------------
+ * Seção de Pedido (Formulário e Carrinho)
+ * ------------------------------------------------
+ */
+.order-section {
+    background-color: var(--light-text);
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* --- ESTILOS DO CARRINHO --- */
+.cart-summary {
+    background-color: #ffe8e8; /* Fundo mais suave para o carrinho */
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.cart-summary h3 {
+    font-family: var(--font-body);
+    font-size: 1.2em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 5px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--primary-color);
+}
+/* Remove a borda do último item */
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-details strong {
+    font-weight: 600;
+}
+
+.cart-item-details span {
+    display: block;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.remove-item-button {
+    background: none;
+    border: none;
+    color: #d85c88;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.2em;
+    line-height: 1;
+    margin-left: 10px;
+    transition: color 0.2s;
+}
+
+.remove-item-button:hover {
+    color: #cc0000;
+}
+/* --- FIM ESTILOS DO CARRINHO --- */
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--secondary-color);
+}
+
+/* NOVO: Estilo para a mensagem de taxa de entrega dentro do form-group */
+.form-group p {
+    font-size: 0.9em;
+    color: var(--secondary-color); /* Usa a cor principal para destacar */
+    margin-top: 5px;
+}
+
+
+input[type="text"], 
+input[type="number"], 
+select, 
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: 1em;
+}
+
+/* Estilo para Radio Buttons */
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-group label {
+    background-color: #f0f0f0;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: 400;
+    color: var(--text-color);
+    border: 1px solid #ddd;
+    white-space: nowrap; /* Evita que o label quebre a linha no preço */
+}
+
+.radio-group input[type="radio"]:checked + label {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    border-color: var(--secondary-color);
+    font-weight: 600;
+}
+
+/* Detalhes do Pedido - Configuração do Item Atual */
+.order-details {
+    border: 1px dashed var(--primary-color);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    min-height: 50px; 
+}
+.order-details h3 {
+    font-family: var(--font-body);
+    font-size: 1.4em;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+/* NOVO: Botão Adicionar ao Pedido */
+.add-to-cart-button {
+    background-color: #25D366; /* Verde do WhatsApp, para chamar atenção */
+    color: var(--light-text);
+    border: none;
+    padding: 12px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    width: 100%;
+    margin-top: 20px;
+}
+.add-to-cart-button:hover {
+    background-color: #128C7E;
+}
+
+/* Botão de Envio (Finalizar) */
+.submit-button {
+    background-color: var(--secondary-color); /* Usando a cor principal */
+    color: var(--light-text);
+    border: none;
+    padding: 15px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.1em;
+    transition: background-color 0.2s;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(216, 92, 136, 0.4);
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: #a3466d; /* Cor mais escura no hover */
+}
+
+.submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.order-status {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+
+/*
+ * ------------------------------------------------
+ * Responsividade (Mobile First)
+ * ------------------------------------------------
+ */
+@media (min-width: 768px) {
+    .header h1 {
+        font-size: 3em;
+    }
+
+    .container {
+        padding: 40px;
+    }
+
+    .menu-list {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    /* Ajuste para alinhar melhor o formulário e o resumo do carrinho em telas maiores */
+    .order-section {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .order-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 40px;
+    }
+    
+    /* Faz os principais blocos ocuparem a largura total dentro do form */
+    .order-details,
+    .submit-button,
+    .order-status {
+        grid-column: 1 / -1; 
+    }
+}
+
+@media (min-width: 1024px) {
+    .menu-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
