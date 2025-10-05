@@ -8,7 +8,7 @@ const menuData = [
         flavors: [
             // Preços diferentes por sabor
             { id: 'd1s1', name: 'Ninho com Nutella', price: 11.50 }, 
-            { id: 'd1s2', name: 'Ninho com Bis', price: 12.00 },
+            { id: 'd1s2', name: 'Ninho com Bis', price: 12.00 },   
             { id: 'd1s3', name: 'Nutella', price: 12.00 },
             { id: 'd1s4', name: 'Brigadeiro', price: 10.00 },
             { id: 'd1s5', name: 'Ninho', price: 10.00 }
@@ -21,23 +21,23 @@ const menuData = [
         image: 'img/paodemel.jpg',
         flavors: [
             // Mesmo preço para os dois sabores
-            { id: 'd2s1', name: 'Chocolate', image: 'img/paodemel.jpg', price: 5.00 },
-            { id: 'd2s2', name: 'Doce de Leite', image: 'img/paodemel.jpg', price: 5.00 }
-        ] 
+            { id: 'd2s1', name: 'Doce de Leite', price: 10.00 }] 
     },
     {
         id: 'doce3',
         name: 'Alfajor',
         description: 'Aquele alfajor de respeito.',
         image: 'img/alfajor.jpg',
-        flavors: [{ id: 'd3s1', name: 'Alfajor Clássico', image: 'img/alfajor.jpg', price: 4.50 }] 
+        flavors: [{ id: 'd3s1', name: 'Alfajor Clássico', price: 6.00 }] 
     },
     {
         id: 'doce4',
         name: 'Coxinha de Morango',
         description: 'Macio por fora e por dentro, irresistível.',
         image: 'img/coxinha.jpg',
-        flavors: [{ id: 'd4s1', name: 'Morango com Brigadeiro', image: 'img/coxinha.jpg', price: 10.00 }] 
+        flavors: [{ id: 'd4s1', name: 'Coxinha de Morango Pequena', image: 'img/coxinha.jpg', price: 8.50 },
+            { id: 'd4s2', name: 'Coxinha de Morango Grande', image: 'img/coxinha.jpg', price: 15.00 }
+        ] 
     }
 ];
 
