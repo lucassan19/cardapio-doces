@@ -19,8 +19,8 @@ const menuData = [
         name: 'Pão de Mel',
         description: 'Pão de mel fresco e leve, ideal para qualquer momento.',
         image: 'img/paodemel.jpg',
-        flavors: [
-            // Mesmo preço para os dois sabores
+        flavors: [ 
+            // Sabor ÚNICO
             { id: 'd2s1', name: 'Doce de Leite', price: 10.00 }] 
     },
     {
@@ -35,7 +35,9 @@ const menuData = [
         name: 'Coxinha de Morango',
         description: 'Macio por fora e por dentro, irresistível.',
         image: 'img/coxinha.jpg',
-        flavors: [{ id: 'd4s1', name: 'Coxinha de Morango Pequena', image: 'img/coxinha.jpg', price: 8.50 },
+        flavors: [
+            // Múltiplos sabores para testar o rádio button
+            { id: 'd4s1', name: 'Coxinha de Morango Pequena', image: 'img/coxinha.jpg', price: 8.50 },
             { id: 'd4s2', name: 'Coxinha de Morango Grande', image: 'img/coxinha.jpg', price: 15.00 }
         ] 
     }
@@ -97,6 +99,7 @@ function handleDoceSelection(event) {
     const doceId = event.target.getAttribute('data-doce-id');
     const doce = menuData.find(d => d.id === doceId);
     
+    // Define o sabor e preço padrão se houver apenas 1 opção
     const defaultFlavor = doce.flavors.length === 1 ? doce.flavors[0] : null;
 
     currentOrder.selectedItem = {
@@ -117,12 +120,26 @@ function handleDoceSelection(event) {
 
 /**
  * Renderiza o formulário interativo de seleção de sabor, quantidade e preço.
+ * ATUALIZADO para exibir sabor único ou rádio buttons.
  */
 function renderOrderConfiguration(doce) {
     const hasFlavors = doce.flavors.length > 1;
 
     let flavorOptionsHTML = '';
     
+    // Condição para SABOR ÚNICO
+    if (!hasFlavors) {
+        // Se houver apenas 1 sabor, exibe-o como texto estático
+        const flavor = doce.flavors[0];
+        flavorOptionsHTML = `
+            <div class="form-group">
+                <label>Sabor Selecionado:</label>
+                <p><strong>${flavor.name}</strong> (R$ ${flavor.price.toFixed(2)})</p>
+            </div>
+        `;
+    } 
+    
+    // Condição para MÚLTIPLOS SABORES
     if (hasFlavors) {
         flavorOptionsHTML = `
             <div class="form-group">
@@ -156,6 +173,7 @@ function renderOrderConfiguration(doce) {
         if (display) display.textContent = `R$ ${price.toFixed(2)}`;
     }
 
+    // O listener só é necessário se houver múltiplos sabores (radio buttons)
     if (hasFlavors) {
         document.querySelectorAll('input[name="doce-flavor"]').forEach(radio => {
             radio.addEventListener('change', (e) => {
@@ -440,6 +458,36 @@ function generateWhatsAppMessage() {
 }
 
 /**
+ * Reseta o estado do pedido (carrinho) e a interface do usuário.
+ */
+function resetOrder() {
+    // 1. Limpa o estado global do pedido
+    currentOrder.doces = [];
+    currentOrder.selectedItem = null;
+    currentOrder.totalValue = 0;
+
+    // 2. Limpa os campos do formulário
+    clientNameInput.value = '';
+    
+    // Desmarca os rádios de pagamento e recebimento
+    document.querySelectorAll('input[name="payment-method"]:checked').forEach(radio => radio.checked = false);
+    document.querySelectorAll('input[name="delivery-option"]:checked').forEach(radio => radio.checked = false);
+    
+    // Oculta e limpa o campo de endereço
+    addressGroup.style.display = 'none';
+    addressGroup.innerHTML = `
+        <label for="address">Endereço de Entrega:</label>
+        <textarea id="address" name="address" rows="2" placeholder="Rua, Número, Bairro, Ponto de Referência"></textarea>
+    `;
+
+    // 3. Atualiza a interface para o estado inicial
+    renderCartSummary(); // Volta para "Carrinho Vazio"
+    orderDetailsDiv.innerHTML = '<p>Selecione um doce no cardápio para começar a montar seu pedido.</p>';
+    updateReadyStatus(); // Garante que o status e o botão "Finalizar" reflitam o carrinho vazio
+}
+
+
+/**
  * Gerencia o envio do formulário.
  */
 function handleSubmit(event) {
@@ -449,10 +497,14 @@ function handleSubmit(event) {
     
     if (whatsappLink) {
         window.open(whatsappLink, '_blank');
-        updateOrderStatus('Pedido enviado! Verifique seu WhatsApp.');
+        
+        // Chamada da função de reset APÓS o envio
+        resetOrder(); 
+        
+        updateOrderStatus('✅ Pedido enviado! Verifique seu WhatsApp para confirmar. O carrinho foi zerado.');
+        
     } else {
         // Essa mensagem só deve aparecer se a pessoa ignorar os alertas e ainda assim o link for nulo
-        // A função generateWhatsAppMessage deve disparar o alerta e retornar null antes
         updateOrderStatus('Erro ao gerar pedido. Verifique os campos.');
     }
 }
