@@ -224,7 +224,7 @@ function addItemToCart() {
     
     renderCartSummary();
     
-    orderDetailsDiv.innerHTML = '<p>Item adicionado! Selecione outro doce acima ou finalize seu pedido.</p>';
+    orderDetailsDiv.innerHTML = '<p>Item adicionado! Selecione outro doce ou finalize seu pedido.</p>';
     updateOrderStatus(`✅ ${item.doce} (${item.selectedFlavor || 'Único'}) x${item.quantity} adicionado ao pedido!`);
     
     // Atualiza o status de prontidão depois de adicionar
